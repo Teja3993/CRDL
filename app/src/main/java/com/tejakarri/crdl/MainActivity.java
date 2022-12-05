@@ -12,6 +12,7 @@ import androidx.core.content.FileProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,6 +20,8 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imgCamera;
     Button btnCamera, uploadbtn;
     TextView Tv_uri;
+    RadioGroup radioGroup;
 
     ActivityResultLauncher<String> mGetContent, mGetContent2;
     ActivityResultLauncher<Intent> activityResultLauncher;
@@ -48,10 +52,21 @@ public class MainActivity extends AppCompatActivity {
         Tv_uri = findViewById(R.id.tv_uri);
         uploadbtn = findViewById(R.id.send_to_server);
 
+       // radioGroup = findViewById(R.id.radio_group);
+
+
+
         uploadbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Toast.makeText(MainActivity.this, "Uploading to server", Toast.LENGTH_SHORT).show();
+
+
+                //Toast.makeText(MainActivity.this, "Please select an option", Toast.LENGTH_SHORT).show();
+
+
             }
         });
 
@@ -71,15 +86,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Now for using Camera
-
-
-
-
-
-
-
-
-
 
         Tv_uri.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -101,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         Bitmap.Config.RGB_565, true));
 
                 Bitmap bm = result1.get();
+
                 image_uri = saveImage(  bm,MainActivity.this);
 
                 Intent intent =new Intent(MainActivity.this,CropperActivity.class);
@@ -130,24 +137,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private Uri saveImage(Bitmap image, Context context) {
          File imagesFolder = new File(context.getFilesDir(), "images");
         Uri uri = null;
@@ -155,9 +144,7 @@ public class MainActivity extends AppCompatActivity {
              imagesFolder.mkdirs();
             File file = new File(imagesFolder,"capturedImage.jpg");
             FileOutputStream stream = new FileOutputStream(file);
-
             image.compress(Bitmap.CompressFormat.JPEG,100,stream);
-
            stream.flush();
             stream.close();
             uri = FileProvider.getUriForFile(context.getApplicationContext(), "com.tejakarri.crdl"+".provider", file);

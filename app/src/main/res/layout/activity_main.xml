@@ -31,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ImgCamera"
-        app:layout_constraintVertical_bias="0.329" />
+        app:layout_constraintVertical_bias="0.207" />
 
     <TextView
         android:id="@+id/tv_uri"
@@ -39,12 +39,13 @@
         android:layout_height="wrap_content"
         android:text="Use Camera"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.112"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ImgCamera"
-        app:layout_constraintVertical_bias="0.369" />
+        app:layout_constraintVertical_bias="0.28" />
 
     <Button
         android:id="@+id/send_to_server"
@@ -53,7 +54,33 @@
         android:text="UPload"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.849"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_uri" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_uri"
+        app:layout_constraintVertical_bias="0.504" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="201dp"
+        android:layout_height="104dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/send_to_server"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_uri">
+
+        <RadioButton
+            android:id="@+id/rlc_ckt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Electrical"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/logic_ckt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Electronics"
+            android:textSize="16sp" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
